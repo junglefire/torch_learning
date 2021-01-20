@@ -10,6 +10,7 @@ import click
 log.basicConfig(format='[%(asctime)s][%(levelname)s] %(message)s', level=log.INFO)
 
 NUM_OF_RECORDS = 50
+NUM_OF_EPOCH = 200000
 
 @click.command()
 @click.option("--cmd", help="show: 显示数据集图形; train: 训练模型", type=str)
@@ -64,7 +65,7 @@ def __model_train(dataset, norm):
 	losses = []
 	x = x.view(NUM_OF_RECORDS, -1)
 	y = y.view(NUM_OF_RECORDS, -1)
-	for i in range(100000):
+	for i in range(NUM_OF_EPOCH):
 		# 从输入层到隐含层的计算
 		hidden = x * weights + biases
 	 	# 此时，hidden变量的尺寸是：(50,10)，即50个数据点，10个隐含层神经元
